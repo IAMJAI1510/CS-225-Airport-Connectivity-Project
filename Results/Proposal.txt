@@ -1,0 +1,33 @@
+## Leading Question 
+
+We, as a group, wish to utilise the OpenFlights dataset hich comprises an airports dataset as well as a routes datset. We wish to minimze the travel that passengers go through, espicially on long routes. (https://openflights.org/data.html). Our project goal is to find the shortest route in terms of number of flights for any given origin and destination. Moreover, air travel has become increasingly expensive in todays's world. Using our project and datsets, we will also suggest a route with the least distance travelled which is proportional to least expensive in most cases. These would require Dijkstra's algorithm. We also want to explore how different airports are connected to each other. We would be implementing the centrality algorithm to predict the most connected airports in the dataset.
+
+## Dataset Acquisition
+
+## Data Format
+
+We plan on using two datasets, one for the airports and one for the routes. This is a big dataset, covering over 14000 airports whereas there are 67000 routes covered. The two datsets will be in the form of .dat files. Our airports and routes data will be stored in a graph. In our implementation, we would treat the airports as nodes in our directed graph. Again we plan on using only a subset of the data. We would use the latitudes and longitudes of the given airports to calculate the distances between any two airports. This would also be the weight of the edge between two nodes. Routes.dat contains  the airline and ID, origin airport and ID, destination airport and ID, codeshare, stops and equipment. Airports.dat contains the name, ID, location of each airport in terms of longitudes and latitudes. 
+
+
+## Data Correction
+
+We plan on parsing the dataset using standard libraries such as parseCSVLine. We also plan on running scripts to check for errors in the dataset. If an error occurs due to missing or invalid data, we would ignore it and work with the correct data instead.
+
+## Data Storage
+
+We would be storing our data in the form of a graph with the airports being the nodes and the distance between the airports being the weight of the edge. Our current idea is to store a set of nodes, where each node includes the data for each airport (the name, coordinates, and a vector of connecting nodes, and whatever else is necessary). We are probably going to upload multiple files to obtain the information necessary for which airports connect to which. However, if something changes and we think we can find a more efficient data structure to model this data, we will switch to that implementation.
+This will take O(n+m) space complexity, as we will have a vector of nodes, where each node also contains a vector or adjacent nodes. And we also store a vector of all the edges. So n+m total.
+## Algorithm 
+
+A graph will be created to hold airports and the routes between them. We will use a BFS traversal with an iterator that will traverse the nodes of the graph. Using Djikstra’s shortest path algorithm, we will be able to find the shortest path between any two airports, passing other airports as needed. The output can be a vector of vertices that represent the shortest path. We intend to use other graph structures like adjacency matrix and adjacency list. We might use other improved structures if we encounter them later on in the class. 
+We would be implementing the centrality algorithm to predict the most connected airports. Again, we would aim to traverse through each of the nodes and check the number of airports each of the airport is connected to. We would then output a vector containing the top n most connected airports. This would be helpful to passengers to figure out the most connected airports in their region and make plans based on travel through the most connected airports.
+
+The BFS traversal algorithm takes O(n+m) time, which will probably be O(n) since n is close in value to m. The space complexity is O(n).
+Djikstra’s shortest path algorithm is O(nlogn +mlogn) or O(nlogn+m), depending on how we implement the algorithm. For our dataset, the amount of edges will probably be somewhat similar to the nodes, so we'll just say that our algorithm will be O(nlogn). If we implemement it using a minHeap and an array, we the space complexity will be O(n).
+Our second algorithm is to locate the airports that are the most important. In other words, we want to find the airports that are most connected to the most other airports within a certain region. This algorithm will take O(nm) time because at most we will have to search through every airport and its edges. The space complexity is O(n+m).
+
+
+## Timeline
+
+Our timeline is as follows: Nov 18th: Parse the CSV file completely and get a graph created with a BFS traversal on it. Nov 27th: Draft of Dijkstra's as well as centrality algorithm in regards to our goal Dec 3rd: Create algorithm tests and verify that algorithms are running correctly 
+Dec 8th: Have the project complete and running well. The reports and presentations are to be worked on.
